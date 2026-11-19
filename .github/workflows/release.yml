@@ -6,18 +6,15 @@
 
 name: Publish new release
 on:
-  push:
-    tags:
-      - "*"
-      - "!*.pr*"
-      - "!*b"
+  workflow_dispatch: {}
 
 permissions:
   contents: read
 
 jobs:
   release:
-    runs-on: "ubuntu-20.04"
+    runs-on: "ubuntu-latest"
+    timeout-minutes: 45
     env:
       JAVA_OPTS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
       TAG: ${{ github.ref_name }}

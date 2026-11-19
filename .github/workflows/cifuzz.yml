@@ -1,5 +1,6 @@
 name: CIFuzz
-on: [pull_request]
+on:
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -11,6 +12,7 @@ concurrency:
 jobs:
   Fuzzing:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
     - name: Build Fuzzers
       id: build
